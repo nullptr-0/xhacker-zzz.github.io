@@ -439,35 +439,56 @@ nav {
 
 // Posts
 
-.posts{
+.posts {
+    .tag {
+        display: inline;
+        font-weight: 300;
+        font-size: $small-font-size;
 
-  .tag {
-    display: inline;
-    font-weight: 300;
-    font-size: $small-font-size;
-
-    li:before {
-      content: '';
-    }
-
-    li {
-      display: inline;
-      margin: 0;
-
-      > a {
-        margin: 3px 3px 3px 0;
-        padding: .5px 4px;
-        color: $base-color;
-        background-color: $tag-index-label-background-color;
-        border-radius: 3px;
-
-        &:hover {
-          color: $link-color;
-          background-color:$link-bghv-color;
+        li:before {
+            content: '';
         }
-      }
+
+        li {
+            display: inline;
+            margin: 0;
+
+            > a {
+                margin: 3px 3px 3px 0;
+                padding: .5px 4px;
+                color: $base-color;
+                background-color: $tag-index-label-background-color;
+                border-radius: 3px;
+
+                &:hover {
+                    color: $link-color;
+                    background-color: $link-bghv-color;
+                }
+            }
+        }
     }
-  }
+
+    .download {
+        display: inline;
+        float: right;
+        font-weight: 300;
+        font-size: $small-font-size;
+
+        > a {
+            margin: 3px 3px 3px 0;
+            padding: .5px 4px;
+            color: $base-color;
+            background-color: $tag-index-label-background-color;
+            border: 1px solid #c1c3c5;
+            border-radius: 7px;
+
+            &:hover {
+                color: $link-color;
+                background-color: $link-bghv-color;
+                border: 1px solid #228ae6;
+            }
+        }
+    }
 }
 
 .posts > .post {

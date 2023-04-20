@@ -7,19 +7,44 @@ layout: default
   <h1>{{ page.title }}</h1>
 
   <div clsss="meta">
-    <span class="date">
-      {{ page.date | date: "%Y-%m-%d" }}
-    </span>
+      <span class="date">
+          {{ page.date | date: "%Y-%m-%d" }}
+      </span>
 
-    <ul class="tag">
-      {% for tag in page.tags %}
-      <li>
-        <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
-          {{ tag }}
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
+      <ul class="tag">
+          {% for tag in page.tags %}
+          <li>
+              <a href="{{ site.url }}{{ site.baseurl }}/tags#{{ tag }}">
+                  {{ tag }}
+              </a>
+          </li>
+          {% endfor %}
+      </ul>
+
+      <span class="download">
+          <button onclick="const filename='{{ page.date | date: "%Y-%m-%d" }}-'+'{{ page.url }}'.substring('{{ page.url }}'.indexOf('/')+1,'{{ page.url }}'.lastIndexOf('/'))+'.md';downloadFile('https://raw.githubusercontent.com/nullptr-0/nullptr-0.github.io/master/_posts/'+filename, filename)">
+              ⇩ 下载 Markdown
+          </button>
+          <script>
+              function downloadFile(url, filename) {
+                  var xhr = new XMLHttpRequest();
+                  xhr.open('GET', url, true);
+                  xhr.responseType = 'blob';
+                  xhr.onload = function () {
+                      if (xhr.status === 200) {
+                          var blob = xhr.response;
+                          var link = document.createElement('a');
+                          link.href = URL.createObjectURL(blob);
+                          link.download = filename;
+                          document.body.appendChild(link);
+                          link.click();
+                          document.body.removeChild(link);
+                      }
+                  };
+                  xhr.send();
+              }
+          </script>
+      </span>
   </div>
 
   
@@ -33,18 +58,18 @@ layout: default
 </article>
 
 <div class="pagination">
-  {% if page.previous.url %}
-    <span class="prev" >
-      <a href="{{ site.url }}{{ site.baseurl }}{{ page.previous.url }}">
-        ← 上一篇
-      </a>
+    {% if page.previous.url %}
+    <span class="prev">
+        <a href="{{ site.url }}{{ site.baseurl }}{{ page.previous.url }}">
+            ← 上一篇
+        </a>
     </span>
-  {% endif %}
-  {% if page.next.url %}
-    <span class="next" >
-      <a href="{{ site.url }}{{ site.baseurl }}{{ page.next.url }}">
-        下一篇 →
-      </a>
+    {% endif %}
+    {% if page.next.url %}
+    <span class="next">
+        <a href="{{ site.url }}{{ site.baseurl }}{{ page.next.url }}">
+            下一篇 →
+        </a>
     </span>
-  {% endif %}
+    {% endif %}
 </div>
