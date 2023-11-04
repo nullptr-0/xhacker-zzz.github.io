@@ -84,7 +84,7 @@ vector<vector<double>> solveEquations(vector<vector<double>>& equations) {
             if (hasSolution) {
                 freeVariables[i2] = false;
                 solution[i2][i2 + 1] = 0;
-                solution[i2][0] = equations[i][m];
+                solution[i2][0] = equations[i][m] / equations[i][i2];
                 for (int j = i2 + 1; j < m; ++j) {
                     for (int k = 0; k < m + 1; ++k)
                     {
@@ -107,7 +107,7 @@ vector<vector<double>> solveEquations(vector<vector<double>>& equations) {
         }
         freeVariables[i] = false;
         solution[i][i + 1] = 0;
-        solution[i][0] = equations[i][m];
+        solution[i][0] = equations[i][m] / equations[i][i];
         for (int j = i + 1; j < m; ++j) {
             for (int k = 0; k < m + 1; ++k)
             {
